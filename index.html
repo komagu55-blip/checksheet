@@ -49,133 +49,20 @@
   <table>
     <tr>
       <th>挙式日</th>
-      <td colspan="2"><input type="text" style="width: 95%;"></td>
+      <td colspan="2"><input type="text" name="kyoshiki" style="width: 95%;"></td>
       <th>ご両家名</th>
-      <td><input type="text" style="width: 95%;"></td>
+      <td><input type="text" name="goryoke" style="width: 95%;"></td>
     </tr>
     <tr>
       <td>会場名</td>
-      <td><input type="text" style="width: 95%;"></td>
+      <td><input type="text" name="kaijo" style="width: 95%;"></td>
       <td>挙式会場</td>
       <td>挙式時間</td>
-      <td><input type="text" style="width: 95%;"></td>
+      <td><input type="text" name="jikoku" style="width: 95%;"></td>
     </tr>
     <tr>
       <td>撮影範囲</td>
       <td colspan="2">
-        <label><input type="checkbox"> 式のみ</label>
-        <label><input type="checkbox"> 宴のみ</label>
-        <label><input type="checkbox"> 式＋宴</label>
-      </td>
-      <td>収録形式</td>
-      <td>全てフルハイビジョン収録</td>
-    </tr>
-  </table>
-</div>
-
-<div class="section">
-  <h2>事前チェック</h2>
-  <label><input type="checkbox"> 挙式日、会場、時間、ご両家名は間違っていないか</label>
-  <label><input type="checkbox"> 名札（クローヴ・会場専用）を持ったか</label>
-  <label><input type="checkbox"> 進行表など資料をプリントアウトして持ったか</label>
-  <label><input type="checkbox"> 進行表（挙式・披露宴）の内容を全て確認したか</label>
-  <label><input type="checkbox"> ご要望・注意事項を確認したか（不明点は接客担当者まで）</label>
-  <label><input type="checkbox"> 会場ルールに不明点はないか（不明点は接客担当者まで）</label>
-  <label><input type="checkbox"> 各機材の設定・動作を確認したか（シャッタースピード 大阪1/60、東京1/100・HDサイズ等）</label>
-  <label><input type="checkbox"> バッテリーは充電されているか</label>
-  <label><input type="checkbox"> SDカードはフォーマットされているか</label>
-</div>
-
-<div class="section">
-  <h2>当日チェック</h2>
-  <label><input type="checkbox"> クローヴ本社（06-6131-8057）へ会場到着報告の電話</label>
-  <label><input type="checkbox"> 事務所・会場スタッフへの挨拶</label>
-  <label><input type="checkbox"> 機材の起動チェック</label>
-  <label><input type="checkbox"> 司会者MTGにて進行に変更はないか（不明点・不安点の確認）</label>
-  <label><input type="checkbox"> ご要望・進行の再確認</label>
-  <label><input type="checkbox"> 進行表を確認しながら撮り漏れがないように撮影</label>
-
-  <h3>MiaViaチャペル</h3>
-  <label><input type="checkbox"> 定点カメラ3台をファーストミート・ファミリーミート前に一旦停止し、再度REC開始</label>
-
-  <h3>サブカメラ設営</h3>
-  <label><input type="checkbox"> 導線の邪魔になっていないか</label>
-  <label><input type="checkbox"> 高さは十分か（170cm程度）</label>
-  <label><input type="checkbox"> 水平はとれているか</label>
-  <label><input type="checkbox"> ACアダプターは繋がっているか</label>
-  <label><input type="checkbox"> マイク音声ラインケーブルは繋がっているか</label>
-  <label><input type="checkbox"> HD収録になっているか</label>
-  <label><input type="checkbox"> SDカードはフォーマットされているか</label>
-
-  <h3>編集時の注意点</h3>
-  <textarea placeholder="現場での進行変更・要望追加・撮影ミス・会場側のミスなどを記入"></textarea>
-</div>
-
-<div class="section">
-  <h2>納品チェック</h2>
-  <label><input type="checkbox"> 挙式・披露宴進行表を見返し撮り漏れがないか確認</label>
-  <label><input type="checkbox"> SDカードを社員スタッフへチェックシートと共に提出</label>
-  <label><input type="checkbox"> SDカードを持ち帰る場合はバックアップを取り、後日本社へ発送または持ち込み</label>
-</div>
-
-<div class="section">
-  <h2>退館時チェック</h2>
-  <label><input type="checkbox"> 会場スタッフへの挨拶</label>
-  <label><input type="checkbox"> 忘れ物がないか確認</label>
-  <label><input type="checkbox"> 終了報告をLINEグループへ送付（撮り漏れ・事故・機材不具合があれば記載）</label>
-</div>
-<button type="button" onclick="sendData()">送信</button>
-
-<script>
-function sendData() {
-
-  const data = {
-    kyoshiki: document.querySelector('input[name="kyoshiki"]')?.value || "",
-    goryoke: document.querySelector('input[name="goryoke"]')?.value || "",
-    kaijo: document.querySelector('input[name="kaijo"]')?.value || "",
-    jikoku: document.querySelector('input[name="jikoku"]')?.value || "",
-
-    jizen: Array.from(document.querySelectorAll('.jizen input[type="checkbox"]'))
-                .filter(c => c.checked)
-                .map(c => c.value)
-                .join(", "),
-
-    toujitsu: Array.from(document.querySelectorAll('.toujitsu input[type="checkbox"]'))
-                .filter(c => c.checked)
-                .map(c => c.value)
-                .join(", "),
-
-    nouhin: Array.from(document.querySelectorAll('.nouhin input[type="checkbox"]'))
-                .filter(c => c.checked)
-                .map(c => c.value)
-                .join(", "),
-
-    taikan: Array.from(document.querySelectorAll('.taikan input[type="checkbox"]'))
-                .filter(c => c.checked)
-                .map(c => c.value)
-                .join(", "),
-
-    memo: document.querySelector('textarea[name="memo"]')?.value || ""
-  };
-
-  fetch("https://script.google.com/macros/s/AKfycbww7tltltNdhig5HcyUpygJe1LGia64y-Fstm8Viff7a3rrIFKbY-9FP_2Ih2-HLH77/exec", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data)
-  })
-  .then(res => {
-    alert("送信しました。お疲れさまでした。");
-  })
-  .catch(err => {
-    alert("送信に失敗しました。ネットワークを確認してください。");
-  });
-}
-</script>
-</body>
-</html>
-
-
-
-
-
-
+        <label><input type="checkbox" class="jizen" value="式のみ"> 式のみ</label>
+        <label><input type="checkbox" class="jizen" value="宴のみ"> 宴のみ</label>
+        <label><input type="checkbox" class="jizen" value="式＋宴"> 式＋宴</label>
