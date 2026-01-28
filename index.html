@@ -158,7 +158,7 @@ function sendData() {
     memo: document.querySelector('textarea[name="memo"]')?.value || ""
   };
 
-  fetch("https://script.google.com/macros/s/AKfycbxazX_vDpyfnfQIPaTcFCOUAY-2DgxVePmBiM9w2NiiCYshcn7MxoXbenQBChPFRn54/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbyP2z1LIZXPrfpUVLg0IhANbUHs58MnD8YNGCIbeNKOLi4x_ePb7cGbpivcHe6bxJOS/exec", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data)
@@ -173,3 +173,4 @@ function sendData() {
 </script>
 </body>
 </html>
+
