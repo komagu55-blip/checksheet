@@ -66,3 +66,104 @@
         <label><input type="checkbox" class="jizen" value="式のみ"> 式のみ</label>
         <label><input type="checkbox" class="jizen" value="宴のみ"> 宴のみ</label>
         <label><input type="checkbox" class="jizen" value="式＋宴"> 式＋宴</label>
+      </td>
+      <td>収録形式</td>
+      <td>全てフルハイビジョン収録</td>
+    </tr>
+  </table>
+</div>
+
+<div class="section jizen">
+  <h2>事前チェック</h2>
+  <label><input type="checkbox" value="挙式日・会場・時間・ご両家名確認"> 挙式日、会場、時間、ご両家名は間違っていないか</label>
+  <label><input type="checkbox" value="名札持参"> 名札（クローヴ・会場専用）を持ったか</label>
+  <label><input type="checkbox" value="資料プリント"> 進行表など資料をプリントアウトして持ったか</label>
+  <label><input type="checkbox" value="進行表確認"> 進行表（挙式・披露宴）の内容を全て確認したか</label>
+  <label><input type="checkbox" value="要望確認"> ご要望・注意事項を確認したか</label>
+  <label><input type="checkbox" value="会場ルール確認"> 会場ルールに不明点はないか</label>
+  <label><input type="checkbox" value="機材設定確認"> 各機材の設定・動作を確認したか</label>
+  <label><input type="checkbox" value="バッテリー確認"> バッテリーは充電されているか</label>
+  <label><input type="checkbox" value="SDカード確認"> SDカードはフォーマットされているか</label>
+</div>
+
+<div class="section toujitsu">
+  <h2>当日チェック</h2>
+  <label><input type="checkbox" value="到着報告"> クローヴ本社へ会場到着報告</label>
+  <label><input type="checkbox" value="挨拶"> 事務所・会場スタッフへの挨拶</label>
+  <label><input type="checkbox" value="機材起動"> 機材の起動チェック</label>
+  <label><input type="checkbox" value="司会者MTG"> 司会者MTGで進行確認</label>
+  <label><input type="checkbox" value="要望再確認"> ご要望・進行の再確認</label>
+  <label><input type="checkbox" value="撮影漏れ防止"> 撮り漏れがないように撮影</label>
+
+  <h3>MiaViaチャペル</h3>
+  <label><input type="checkbox" value="定点カメラ再REC"> 定点カメラ3台の再REC</label>
+
+  <h3>サブカメラ設営</h3>
+  <label><input type="checkbox" value="導線確認"> 導線の邪魔になっていないか</label>
+  <label><input type="checkbox" value="高さ確認"> 高さは十分か</label>
+  <label><input type="checkbox" value="水平確認"> 水平はとれているか</label>
+  <label><input type="checkbox" value="AC接続"> ACアダプターは繋がっているか</label>
+  <label><input type="checkbox" value="マイク接続"> マイク音声ラインケーブルは繋がっているか</label>
+  <label><input type="checkbox" value="HD収録"> HD収録になっているか</label>
+  <label><input type="checkbox" value="SDカード確認"> SDカードはフォーマットされているか</label>
+
+  <h3>編集時の注意点</h3>
+  <textarea name="memo" placeholder="現場での進行変更・要望追加・撮影ミスなどを記入"></textarea>
+</div>
+
+<div class="section nouhin">
+  <h2>納品チェック</h2>
+  <label><input type="checkbox" value="進行表確認"> 撮り漏れがないか確認</label>
+  <label><input type="checkbox" value="SD提出"> SDカードを社員スタッフへ提出</label>
+  <label><input type="checkbox" value="バックアップ"> バックアップ後に発送または持ち込み</label>
+</div>
+
+<div class="section taikan">
+  <h2>退館時チェック</h2>
+  <label><input type="checkbox" value="挨拶"> 会場スタッフへの挨拶</label>
+  <label><input type="checkbox" value="忘れ物確認"> 忘れ物がないか確認</label>
+  <label><input type="checkbox" value="終了報告"> 終了報告をLINEグループへ送付</label>
+</div>
+
+<button type="button" onclick="sendData()">送信</button>
+
+<script>
+function sendData() {
+
+  const data = {
+    kyoshiki: document.querySelector('input[name="kyoshiki"]').value,
+    goryoke: document.querySelector('input[name="goryoke"]').value,
+    kaijo: document.querySelector('input[name="kaijo"]').value,
+    jikoku: document.querySelector('input[name="jikoku"]').value,
+
+    jizen: Array.from(document.querySelectorAll('.jizen input[type="checkbox"]:checked'))
+                .map(c => c.value).join(", "),
+
+    toujitsu: Array.from(document.querySelectorAll('.toujitsu input[type="checkbox"]:checked'))
+                .map(c => c.value).join(", "),
+
+    nouhin: Array.from(document.querySelectorAll('.nouhin input[type="checkbox"]:checked'))
+                .map(c => c.value).join(", "),
+
+    taikan: Array.from(document.querySelectorAll('.taikan input[type="checkbox"]:checked'))
+                .map(c => c.value).join(", "),
+
+    memo: document.querySelector('textarea[name="memo"]').value
+  };
+
+  fetch("https://script.google.com/macros/s/AKfycbww7tltltNdhig5HcyUpygJe1LGia64y-Fstm8Viff7a3rrIFKbY-9FP_2Ih2-HLH77/exec", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  })
+  .then(res => {
+    alert("送信しました。お疲れさまでした。");
+  })
+  .catch(err => {
+    alert("送信に失敗しました。ネットワークを確認してください。");
+  });
+}
+</script>
+
+</body>
+</html>
